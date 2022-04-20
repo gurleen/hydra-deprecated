@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "colorfield",
     "django_extensions",
     "django_json_widget",
+    "ordered_model"
 ]
 
 MIDDLEWARE = [

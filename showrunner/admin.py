@@ -4,8 +4,16 @@ from django_json_widget.widgets import JSONEditorWidget
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils.http import urlencode
+from ordered_model.admin import OrderedTabularInline, OrderedInlineModelAdminMixin
 
-from showrunner.models import Conference, School, Team, Player
+from showrunner.models import (
+    Conference,
+    School,
+    Team,
+    Player,
+    Rundown,
+    RundownItem,
+)
 
 admin.site.site_header = "DragonsTV Hydra"
 
@@ -84,7 +92,7 @@ class PlayerAdmin(admin.ModelAdmin):
             '<img src="{}" width="80" height="auto" />'.format(obj.image.url)
         )
 
-    def headshot(self, obj):
+    def image_preview(self, obj):
         return format_html(
             '<img src="{url}" width="100" height="auto" />'.format(
                 url=obj.image.url,
@@ -108,7 +116,30 @@ class PlayerAdmin(admin.ModelAdmin):
     ]
     search_fields = ["first_name", "last_name"]
     ordering = ["uniform"]
-    readonly_fields = ["headshot"]
+    readonly_fields = ["image_preview"]
 
 
 admin.site.register(Player, PlayerAdmin)
+
+
+class RundownItemTabularInline(OrderedTabularInline):
+    model = RundownItem
+    fields = (
+        "name",
+        "estimated_duration",
+        "item_type",
+        "video_cue",
+        "audio_cue",
+        "move_up_down_links",
+    )
+    readonly_fields = ("move_up_down_links",)
+    ordering = ("order",)
+    extra = 1
+
+
+class RundownAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
+    list_display = ("name",)
+    inlines = (RundownItemTabularInline,)
+
+
+admin.site.register(Rundown, RundownAdmin)

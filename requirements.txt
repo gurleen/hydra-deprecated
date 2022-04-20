@@ -15,6 +15,7 @@ Django==4.0.4
 django-colorfield==0.6.3
 django-extensions==3.1.5
 django-json-widget==1.1.1
+django-ordered-model==3.5
 entrypoints==0.4
 executing==0.8.3
 future==0.18.2
