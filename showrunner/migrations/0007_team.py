@@ -7,17 +7,40 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0006_rename_team_school'),
+        ("showrunner", "0006_rename_team_school"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Team',
+            name="Team",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sport', models.CharField(choices=[('mens-basketball', "Men's Basketball"), ('womens-basketball', "Women's Basketball")], max_length=25)),
-                ('stats', models.JSONField()),
-                ('school', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='showrunner.school')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "sport",
+                    models.CharField(
+                        choices=[
+                            ("mens-basketball", "Men's Basketball"),
+                            ("womens-basketball", "Women's Basketball"),
+                        ],
+                        max_length=25,
+                    ),
+                ),
+                ("stats", models.JSONField()),
+                (
+                    "school",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="showrunner.school",
+                    ),
+                ),
             ],
         ),
     ]

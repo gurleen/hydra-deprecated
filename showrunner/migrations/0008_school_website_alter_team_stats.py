@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0007_team'),
+        ("showrunner", "0007_team"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='school',
-            name='website',
+            model_name="school",
+            name="website",
             field=models.URLField(null=True),
         ),
         migrations.AlterField(
-            model_name='team',
-            name='stats',
+            model_name="team",
+            name="stats",
             field=models.JSONField(blank=True, default=dict),
         ),
     ]

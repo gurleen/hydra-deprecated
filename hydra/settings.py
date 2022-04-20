@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "showrunner",
     "colorfield",
     "django_extensions",
-    "django_json_widget"
+    "django_json_widget",
 ]
 
 MIDDLEWARE = [

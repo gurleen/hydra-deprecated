@@ -9,29 +9,60 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Conference',
+            name="Conference",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
-                ('abbr', models.CharField(blank=True, default='', max_length=6)),
-                ('logo', models.ImageField(upload_to='images/conferences')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
+                ("abbr", models.CharField(blank=True, default="", max_length=6)),
+                ("logo", models.ImageField(upload_to="images/conferences")),
             ],
         ),
         migrations.CreateModel(
-            name='Team',
+            name="Team",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
-                ('abbr', models.CharField(blank=True, default='', max_length=6)),
-                ('logo', models.ImageField(upload_to='images/teams')),
-                ('primary_color', colorfield.fields.ColorField(default='#FF0000', image_field=None, max_length=18, samples=None)),
-                ('secondary_color', colorfield.fields.ColorField(default='#FF0000', image_field=None, max_length=18, samples=None)),
-                ('conference', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='showrunner.conference')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
+                ("abbr", models.CharField(blank=True, default="", max_length=6)),
+                ("logo", models.ImageField(upload_to="images/teams")),
+                (
+                    "primary_color",
+                    colorfield.fields.ColorField(
+                        default="#FF0000", image_field=None, max_length=18, samples=None
+                    ),
+                ),
+                (
+                    "secondary_color",
+                    colorfield.fields.ColorField(
+                        default="#FF0000", image_field=None, max_length=18, samples=None
+                    ),
+                ),
+                (
+                    "conference",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="showrunner.conference",
+                    ),
+                ),
             ],
         ),
     ]

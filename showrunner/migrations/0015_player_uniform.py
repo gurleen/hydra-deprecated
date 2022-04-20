@@ -7,14 +7,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0014_alter_player_stats'),
+        ("showrunner", "0014_alter_player_stats"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='player',
-            name='uniform',
-            field=models.IntegerField(default=1, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(99)]),
+            model_name="player",
+            name="uniform",
+            field=models.IntegerField(
+                default=1,
+                validators=[
+                    django.core.validators.MinValueValidator(0),
+                    django.core.validators.MaxValueValidator(99),
+                ],
+            ),
             preserve_default=False,
         ),
     ]

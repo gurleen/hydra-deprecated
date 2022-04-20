@@ -7,18 +7,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0002_remove_team_name_team_school_name_team_team_name'),
+        ("showrunner", "0002_remove_team_name_team_school_name_team_team_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='team',
-            name='logo',
-            field=models.ImageField(null=True, upload_to='images/teams'),
+            model_name="team",
+            name="logo",
+            field=models.ImageField(null=True, upload_to="images/teams"),
         ),
         migrations.AlterField(
-            model_name='team',
-            name='secondary_color',
-            field=colorfield.fields.ColorField(blank=True, default='#FF0000', image_field=None, max_length=18, null=True, samples=None),
+            model_name="team",
+            name="secondary_color",
+            field=colorfield.fields.ColorField(
+                blank=True,
+                default="#FF0000",
+                image_field=None,
+                max_length=18,
+                null=True,
+                samples=None,
+            ),
         ),
     ]

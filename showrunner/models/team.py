@@ -29,7 +29,5 @@ class Team(models.Model):
         self.stats = get_stats_for_team(stats_url)
 
     def fetch_roster(self):
-        roster_url = os.path.join(
-            self.school.website, "sports", self.sport, "roster"
-        )
+        roster_url = os.path.join(self.school.website, "sports", self.sport, "roster")
         get_roster(roster_url, self.school.website, self)

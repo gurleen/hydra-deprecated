@@ -28,7 +28,9 @@ urls = [x["href"] for x in teams]
 
 # %%
 pages = []
-headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
+}
 for team_url in urls:
     print(team_url)
     r = requests.get(team_url, headers=headers)
@@ -40,10 +42,25 @@ for team_url in urls:
 # %%
 for page in pages:
     orig_title: str = page.find("h1", {"class": "title"}).text.replace(" Colors", "")
-    school_name = orig_title.replace("College", "").replace(" of ", "").replace("University", "").replace("-", " ").replace(" and ", " & ").replace("  ", " ").strip()
+    school_name = (
+        orig_title.replace("College", "")
+        .replace(" of ", "")
+        .replace("University", "")
+        .replace("-", " ")
+        .replace(" and ", " & ")
+        .replace("  ", " ")
+        .strip()
+    )
 
-    subtitle: str = page.find("h2").text.replace(" color codes: RGB, CMYK, Pantone, Hex", "")
-    team_name = subtitle.replace(orig_title, "").replace(school_name, "").replace(" and ", " & ").strip()
+    subtitle: str = page.find("h2").text.replace(
+        " color codes: RGB, CMYK, Pantone, Hex", ""
+    )
+    team_name = (
+        subtitle.replace(orig_title, "")
+        .replace(school_name, "")
+        .replace(" and ", " & ")
+        .strip()
+    )
 
     for word in school_name.split():
         team_name = team_name.replace(f"{word}", "").strip()
@@ -63,7 +80,13 @@ for page in pages:
         img_tmp.flush()
     img = File(img_tmp)
 
-    team = School(school_name=school_name, team_name=team_name, conference=conf, primary_color=primary, secondary_color=secondary)
+    team = School(
+        school_name=school_name,
+        team_name=team_name,
+        conference=conf,
+        primary_color=primary,
+        secondary_color=secondary,
+    )
     fname = f"{school_name}{team_name}.png"
     team.logo.save(fname, img)
     team.save()
@@ -71,6 +94,3 @@ for page in pages:
     print(school_name, "-", team_name, primary, secondary)
 
 # %%
-
-
-

@@ -7,18 +7,32 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0009_alter_conference_logo_alter_school_logo_and_more'),
+        ("showrunner", "0009_alter_conference_logo_alter_school_logo_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Player',
+            name="Player",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=32)),
-                ('last_name', models.CharField(max_length=32)),
-                ('image', models.ImageField(upload_to='static/images/players')),
-                ('team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='showrunner.team')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=32)),
+                ("last_name", models.CharField(max_length=32)),
+                ("image", models.ImageField(upload_to="static/images/players")),
+                (
+                    "team",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="showrunner.team",
+                    ),
+                ),
             ],
         ),
     ]

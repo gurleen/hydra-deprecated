@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0015_player_uniform'),
+        ("showrunner", "0015_player_uniform"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='player',
-            name='hometown',
-            field=models.CharField(blank=True, default='', max_length=32),
+            model_name="player",
+            name="hometown",
+            field=models.CharField(blank=True, default="", max_length=32),
         ),
         migrations.AddField(
-            model_name='player',
-            name='position',
-            field=models.CharField(blank=True, default='', max_length=16),
+            model_name="player",
+            name="position",
+            field=models.CharField(blank=True, default="", max_length=16),
         ),
     ]

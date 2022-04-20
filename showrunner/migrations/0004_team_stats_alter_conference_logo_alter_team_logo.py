@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0003_alter_team_logo_alter_team_secondary_color'),
+        ("showrunner", "0003_alter_team_logo_alter_team_secondary_color"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='team',
-            name='stats',
-            field=models.JSONField(default={'individual': [], 'team': []}),
+            model_name="team",
+            name="stats",
+            field=models.JSONField(default={"individual": [], "team": []}),
         ),
         migrations.AlterField(
-            model_name='conference',
-            name='logo',
-            field=models.ImageField(upload_to='hydra/static/images/conferences'),
+            model_name="conference",
+            name="logo",
+            field=models.ImageField(upload_to="hydra/static/images/conferences"),
         ),
         migrations.AlterField(
-            model_name='team',
-            name='logo',
-            field=models.ImageField(null=True, upload_to='hydra/static/images/teams'),
+            model_name="team",
+            name="logo",
+            field=models.ImageField(null=True, upload_to="hydra/static/images/teams"),
         ),
     ]
