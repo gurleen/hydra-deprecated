@@ -7,49 +7,140 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('showrunner', '0017_player_height_player_high_school_and_more'),
+        ("showrunner", "0017_player_height_player_high_school_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Rundown',
+            name="Rundown",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
-                ('start_time', models.DateTimeField()),
-                ('sport', models.CharField(choices=[('mens-basketball', "Men's Basketball"), ('womens-basketball', "Women's Basketball")], max_length=25)),
-                ('event_type', models.CharField(choices=[('test', 'Test Event'), ('non-conf', 'Non-Conference'), ('conf', 'Conference'), ('postseason', 'Post-Season')], max_length=16)),
-                ('away_team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='away_team', to='showrunner.team')),
-                ('home_team', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='home_team', to='showrunner.team')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
+                ("start_time", models.DateTimeField()),
+                (
+                    "sport",
+                    models.CharField(
+                        choices=[
+                            ("mens-basketball", "Men's Basketball"),
+                            ("womens-basketball", "Women's Basketball"),
+                        ],
+                        max_length=25,
+                    ),
+                ),
+                (
+                    "event_type",
+                    models.CharField(
+                        choices=[
+                            ("test", "Test Event"),
+                            ("non-conf", "Non-Conference"),
+                            ("conf", "Conference"),
+                            ("postseason", "Post-Season"),
+                        ],
+                        max_length=16,
+                    ),
+                ),
+                (
+                    "away_team",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="away_team",
+                        to="showrunner.team",
+                    ),
+                ),
+                (
+                    "home_team",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="home_team",
+                        to="showrunner.team",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='RundownItem',
+            name="RundownItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64)),
-                ('estimated_duration', models.DurationField()),
-                ('item_type', models.CharField(choices=[('marker', 'Marker'), ('video', 'Video'), ('talent', 'Talent On Camera'), ('replay', 'Replay Melt'), ('break', 'Ad Break'), ('read', 'On-Air Read')], max_length=16)),
-                ('video_cue', models.CharField(blank=True, default='', max_length=64)),
-                ('audio_cue', models.CharField(blank=True, default='', max_length=64)),
-                ('notes', models.TextField(blank=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64)),
+                ("estimated_duration", models.DurationField()),
+                (
+                    "item_type",
+                    models.CharField(
+                        choices=[
+                            ("marker", "Marker"),
+                            ("video", "Video"),
+                            ("talent", "Talent On Camera"),
+                            ("replay", "Replay Melt"),
+                            ("break", "Ad Break"),
+                            ("read", "On-Air Read"),
+                        ],
+                        max_length=16,
+                    ),
+                ),
+                ("video_cue", models.CharField(blank=True, default="", max_length=64)),
+                ("audio_cue", models.CharField(blank=True, default="", max_length=64)),
+                ("notes", models.TextField(blank=True)),
             ],
         ),
         migrations.CreateModel(
-            name='RundownItemsThroughModel',
+            name="RundownItemsThroughModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order', models.PositiveIntegerField(db_index=True, editable=False, verbose_name='order')),
-                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='showrunner.rundownitem')),
-                ('rundown', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='showrunner.rundown')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "order",
+                    models.PositiveIntegerField(
+                        db_index=True, editable=False, verbose_name="order"
+                    ),
+                ),
+                (
+                    "item",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="showrunner.rundownitem",
+                    ),
+                ),
+                (
+                    "rundown",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="showrunner.rundown",
+                    ),
+                ),
             ],
             options={
-                'ordering': ('rundown', 'order'),
+                "ordering": ("rundown", "order"),
             },
         ),
         migrations.AddField(
-            model_name='rundown',
-            name='items',
-            field=models.ManyToManyField(through='showrunner.RundownItemsThroughModel', to='showrunner.rundownitem'),
+            model_name="rundown",
+            name="items",
+            field=models.ManyToManyField(
+                through="showrunner.RundownItemsThroughModel",
+                to="showrunner.rundownitem",
+            ),
         ),
     ]
